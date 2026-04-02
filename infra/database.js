@@ -15,11 +15,6 @@ async function query(queryObject) {
   }
 }
 
-export default {
-  query,
-  getNewClient,
-};
-
 async function getNewClient() {
   const client = new Client({
     host: process.env.POSTGRES_HOST,
@@ -34,7 +29,15 @@ async function getNewClient() {
   return client;
 }
 
+export default {
+  query,
+  getNewClient,
+};
+
 function getSSLValue() {
-  if (process.env.POSTGRES_CA) return { ca: process.env.POSTGRES_CA };
+  if (process.env.POSTGRES_CA)
+    return {
+      ca: process.env.POSTGRES_CA,
+    };
   return process.env.NODE_ENV === "production" ? true : false;
 }
