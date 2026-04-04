@@ -3,7 +3,6 @@ import database from "infra/database.js";
 async function status(request, response) {
   try {
     const updatedAt = new Date().toISOString();
-
     const version = await database.query("SHOW server_version;");
     const maxConnections = await database.query("SHOW max_connections;");
     const databaseName = process.env.POSTGRES_DB;
